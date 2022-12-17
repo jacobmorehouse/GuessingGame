@@ -6,34 +6,34 @@ use rand::Rng;
 fn main() {
     let lowest_num: i32 = 1;
     let highest_num: i32 = 10;
-    let mut some_input:String = String::new();
-    let mut random_number: i32 = generate_rand(lowest_num, highest_num);
+
+    //TODO:  make menu to exit loop
+
+    //TODO: clear the console each time so that it looks cleaner.
+
 
     println!("----- Guessing Game ----- ");
-    println!("Please guess a number between {} and {}: ", lowest_num, highest_num);
-    
 
-    //Next todo, loop it
-
-    //TODO, then make menu to exit loop
+    loop {
+        let mut some_input:String = String::new();
+        let mut random_number: i32 = generate_rand(lowest_num, highest_num);
 
 
-    io::stdin()
-        .read_line(&mut some_input)
-        .expect("failed to read from stdin");
+        println!("Please guess a number between {} and {}: ", lowest_num, highest_num);
 
-    let trimmed = some_input.trim();
-    match trimmed.parse::<u32>() {
-        Ok(i) => process_input(
-            some_input.trim().parse().expect("numeric"), random_number
-        ),
-        Err(..) => println!("This was not an integer: {}", trimmed),
-    };
+        io::stdin()
+            .read_line(&mut some_input)
+            .expect("failed to read from stdin");
 
+        let trimmed = some_input.trim();
+        match trimmed.parse::<u32>() {
+            Ok(_i) => process_input(
+                some_input.trim().parse().expect("numeric"), random_number
+            ),
+            Err(..) => println!("This was not an integer: {}", trimmed),
+        };
 
-
-
-
+    }
 
 }
 
@@ -46,13 +46,9 @@ fn generate_rand(in_low: i32, in_high: i32) -> i32 {
 fn process_input(user_input: i32, random_input: i32) {
 
     if user_input == random_input {
-        println!("Correct! {}", random_input)
+        println!("Correct! High five! {}", random_input)
     } else {
         println!("Too bad. {}", random_input)
     }
 }
-
-
-
-
 
